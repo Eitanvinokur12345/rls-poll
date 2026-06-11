@@ -151,7 +151,24 @@ function question(){
   `;
 }
 
-function spinner(){
+const CAPI = "https://api.counterapi.dev/v1/rlspoll2026";
+const VKEY = "c";
+async function castVote(qNum, opt){
+  try { await fetch(`${CAPI}/${VKEY}-q${qNum}-o${opt}/up`); } catch(e){}
+}
+async function getCounts(qNum, optCount){
+  const counts = new Array(optCount).fill(0);
+  await Promise.all([...Array(optCount).keys()].map(async i=>{
+    try {
+      const r = await fetch(`${CAPI}/${VKEY}-q${qNum}-o${i}`);
+      const j = await r.json();
+      counts[i] = j.count || 0;
+    } catch(e){}
+  }));
+  return counts;
+}
+
+async function spinner(){
   card.innerHTML = `
     <div class="group-name">${GROUP}</div>
     ${dots(qi+1)}
@@ -161,27 +178,42 @@ function spinner(){
       <div class="spinner-sub">אוסף תשובות מכל החדר</div>
     </div>
   `;
-  setTimeout(tease, 2800);
+  const Q = QUESTIONS[qi];
+  const [counts] = await Promise.all([
+    getCounts(qi, Q.options.length),
+    new Promise(r=>setTimeout(r,2500))
+  ]);
+  tease(counts);
 }
 
-function tease(){
+function tease(counts){
   const Q = QUESTIONS[qi];
   const last = qi === QUESTIONS.length-1;
+  const total = counts.reduce((a,b)=>a+b,0);
+  let leadIdx = 0, leadVal = counts[0];
+  counts.forEach((c,i)=>{ if(c>leadVal){leadVal=c;leadIdx=i;} });
+  const leadPct = total ? Math.round(100*leadVal/total) : 0;
+  const youAreLeader = (leadIdx === lastChoice);
+  const groupLine = total >= 2
+    ? `<b>${total}</b> אנשים ענו עד כה. <b>${leadPct}%</b> בחרו: <b>${Q.options[leadIdx]}</b>`
+    : `אתה בין הראשונים שעונים. ${total === 1 ? 'תודה על הפתיחה!' : ''}`;
   card.innerHTML = `
     <div class="group-name fade">${GROUP}</div>
     ${dots(qi+1)}
-    <div class="tease-tag fade">תובנה</div>
+    <div class="tease-tag fade">תובנה מהחדר</div>
     <div class="tease-headline fade">${Q.teaseHeadline}</div>
+    <div class="tease-line fade" style="border-right-color:var(--acc)">${groupLine}</div>
     <div class="tease-line fade">${Q.teaseLine}</div>
     <div class="reveal-big fade">📊 הסיכום במצגת</div>
-    <div class="you-pick fade">בחירתך: <b>${Q.options[lastChoice]}</b></div>
+    <div class="you-pick fade">בחירתך: <b>${Q.options[lastChoice]}</b>${youAreLeader && total>=3 ? ' ✓ (כמו הרוב)' : ''}</div>
     <button class="btn fade" onclick="next()">${last ? 'לסיום' : 'שאלה הבאה'}</button>
   `;
 }
 
-function answer(choiceIdx){
+async function answer(choiceIdx){
   lastChoice = choiceIdx;
   spinner();
+  await castVote(qi, choiceIdx);
 }
 
 function final(){
