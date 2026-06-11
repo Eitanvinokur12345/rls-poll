@@ -8,7 +8,7 @@
   :root{
     --bg:#241812; --bg2:#2e1f15; --card:#3A2A1E; --border:#5A4636;
     --ink:#FBF1E6; --mut:#C9B49E; --acc:#D98A4E; --acc2:#E8A66A; --gold:#FCD34D;
-    --green:#7DB892; --red:#E87A6A;
+    --green:#7DB892;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
@@ -17,14 +17,16 @@
     background:radial-gradient(1200px 800px at 30% -10%, #3a2415 0%, var(--bg) 60%);
     display:flex;align-items:center;justify-content:center;padding:20px;direction:rtl;
   }
-  .wrap{width:min(720px,100%)}
+  .wrap{width:min(680px,100%)}
   .card{
     background:linear-gradient(180deg,var(--card),#2a1c12);
-    border:1.5px solid var(--border);border-radius:22px;padding:32px 28px;
-    box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;overflow:hidden;
+    border:1.5px solid var(--border);border-radius:22px;padding:34px 28px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;overflow:hidden;min-height:480px;
+    display:flex;flex-direction:column;justify-content:center;
   }
   .card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
     background:linear-gradient(90deg,var(--acc),var(--acc2),var(--gold))}
+  .group-name{font-size:11px;letter-spacing:3px;color:var(--mut);font-weight:700;text-align:center;margin-bottom:8px}
   .dots{display:flex;gap:8px;justify-content:center;margin-bottom:22px;direction:ltr}
   .dot{width:9px;height:9px;border-radius:50%;background:#4d3a2a;transition:.3s}
   .dot.on{background:var(--acc);transform:scale(1.3)}
@@ -32,72 +34,85 @@
   .eyebrow{font-size:12px;letter-spacing:2px;color:var(--acc);font-weight:800;text-align:center;margin-bottom:10px}
   h1{font-size:30px;font-weight:900;line-height:1.25;text-align:center;margin-bottom:10px}
   .sub{color:var(--mut);text-align:center;font-size:16px;margin-bottom:24px;line-height:1.55}
-  .q{font-size:24px;font-weight:800;line-height:1.3;text-align:center;margin:8px 0 22px}
+  .q{font-size:26px;font-weight:800;line-height:1.3;text-align:center;margin:12px 0 26px}
   .opts{display:flex;flex-direction:column;gap:11px}
   .opt{
     background:#2a1c12;border:1.5px solid var(--border);border-radius:14px;
-    padding:16px 18px;font-size:16px;color:var(--ink);text-align:right;cursor:pointer;
+    padding:17px 18px;font-size:16.5px;color:var(--ink);text-align:right;cursor:pointer;
     transition:.18s;display:flex;align-items:center;gap:12px;font-weight:600;font-family:inherit;
   }
   .opt:hover{border-color:var(--acc);transform:translateY(-2px);background:#3a2818}
-  .opt .pill{width:28px;height:28px;border-radius:50%;border:2px solid var(--mut);flex:0 0 auto;
-    display:grid;place-items:center;font-size:13px;color:var(--mut);font-weight:800}
-  .btn{margin-top:22px;background:var(--acc);color:#1a0e07;border:none;border-radius:14px;
-    padding:15px 30px;font-size:17px;font-weight:800;cursor:pointer;transition:.18s;width:100%;font-family:inherit;}
+  .opt .pill{width:30px;height:30px;border-radius:50%;border:2px solid var(--mut);flex:0 0 auto;
+    display:grid;place-items:center;font-size:14px;color:var(--mut);font-weight:800}
+  .btn{margin-top:26px;background:var(--acc);color:#1a0e07;border:none;border-radius:14px;
+    padding:16px 30px;font-size:17px;font-weight:800;cursor:pointer;transition:.18s;width:100%;font-family:inherit;}
   .btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
   .btn.ghost{background:transparent;color:var(--acc);border:1.5px solid var(--acc)}
-  .funfact{margin-top:22px;background:linear-gradient(180deg,#3a2818,#2a1c12);
-    border:1.5px solid var(--gold);border-radius:16px;padding:18px 20px;}
-  .funfact .tag{font-size:12px;letter-spacing:2px;color:var(--gold);font-weight:800;margin-bottom:8px}
-  .funfact p{font-size:16px;line-height:1.6}
-  .you-pick{margin-top:14px;font-size:13.5px;color:var(--mut);text-align:center}
+  .spinner-wrap{text-align:center;padding:30px 0}
+  .spinner{width:90px;height:90px;margin:0 auto 26px;border-radius:50%;
+    border:6px solid var(--border);border-top-color:var(--acc);animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner-text{font-size:21px;font-weight:800;color:var(--ink)}
+  .spinner-sub{font-size:14px;color:var(--mut);margin-top:8px}
+  .tease-tag{font-size:12px;letter-spacing:2px;color:var(--acc);font-weight:800;text-align:center;margin-bottom:14px}
+  .tease-headline{font-size:23px;font-weight:900;line-height:1.35;text-align:center;margin-bottom:18px;color:var(--ink)}
+  .tease-line{background:#3a2818;border:1px solid var(--border);border-right:4px solid var(--gold);
+    border-radius:12px;padding:16px 18px;font-size:15.5px;line-height:1.55;text-align:right;margin:10px 0}
+  .tease-line b{color:var(--acc)}
+  .you-pick{font-size:13.5px;color:var(--mut);text-align:center;margin-top:14px}
   .you-pick b{color:var(--acc)}
   .fade{animation:fade .5s ease both}
   @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .final-fact{background:#2a1c12;border:1px solid var(--border);border-right:4px solid var(--gold);
-    border-radius:12px;padding:14px 18px;margin:10px 0;font-size:15.5px;line-height:1.5}
-  .final-fact b{color:var(--acc)}
   .credit{text-align:center;color:var(--mut);font-size:12px;margin-top:18px;line-height:1.6}
-  .big-quote{font-size:18px;font-style:italic;text-align:center;color:var(--gold);margin:10px 0 6px}
+  .reveal-big{font-size:20px;font-weight:900;color:var(--gold);text-align:center;padding:14px 0}
 </style>
 </head>
 <body>
 <div class="wrap"><div class="card" id="card"></div></div>
 <script>
+const GROUP = "פרויקט NAMELESS  ·  אחרייטק 2026";
+
 const QUESTIONS = [
   {
-    q: "מה הכי הפתיע אותך במחקר?",
-    options: ["שדמיון דתי כל כך משפיע","שכסף לא קונה שלווה","הפערים הגדולים בין הקבוצות","ששני המאמינים בראש"],
-    fact: "המחקר חושף שהדמיון הדתי בין בני זוג הוא מנבא חזק יותר של שלווה פנימית מאשר כסף, גיל, או אפילו השכלה."
+    q: "מה הכי הפתיע אותך מהמחקר?",
+    options: ["שדמיון דתי כל כך משפיע","שכסף לא קונה שלווה","שני המאמינים הכי מאושרים","ההבדלים בין הדורות"],
+    teaseHeadline: "כל ארבעת ההפתעות חולקות אותו DNA.",
+    teaseLine: "אצל כולם המסר זהה: <b>קשר רוחני משותף מנבא רווחה.</b> הפערים המספריים — סיכמנו אותם במצגת."
   },
   {
     q: "האם הממצאים משנים את הדרך שאתה רואה זוגיות?",
     options: ["כן באופן משמעותי","קצת חשבתי על זה","לא ממש","להיפך"],
-    fact: "המחקר לא קובע שצריך להתחתן עם בן דת — אלא שדמיון בעולם הערכים הפנימי נכון לרווחה לטווח ארוך."
+    teaseHeadline: "המחקר לא ייעוץ — אבל הוא מציג מציאות.",
+    teaseLine: "<b>הגדלים שראיתם נמדדים בשנת 2023-24 על 36,908 נסקרים.</b> זה הבסיס לכל מסקנה. הפרטים — בסיכום."
   },
   {
-    q: "אם היית מציג את המחקר בפני חברים מה היית מדגיש?",
-    options: ["שדת חשובה לרווחה","שדמיון בזוגיות חשוב","שכסף לא קונה שלווה","שכל דור שונה"],
-    fact: "הסיפור החזק ביותר הוא הפער של 0.82 בשלווה. גדול יותר מכל פער אחר שמצאנו — גיל הכנסה השכלה גזע."
+    q: "אם היית מציג את המחקר בפני חברים, מה היית מדגיש?",
+    options: ["שדת חשובה לרווחה","שדמיון בזוגיות חשוב","שכסף לא קונה הכל","שכל דור שונה"],
+    teaseHeadline: "ארבעת המסרים האלה גדלים בעוצמות שונות.",
+    teaseLine: "<b>אחד מהם גדול פי 4 מהאחרים.</b> חזרנו אליו במצגת — והוא יישאר איתכם."
   },
   {
     q: "איזה ממצא תזכור הכי הרבה?",
     options: ["פער 0.82 בשלווה","51% מהזוגות דומים","מורמונים בראש בשלווה","הצעירים פחות שלווים"],
-    fact: "כל הממצאים האלה מספרים את אותו סיפור — הקשר הרוחני בזוגיות הוא הבסיס לרווחה הפנימית."
+    teaseHeadline: "כל אחד מהארבעה יישאר איתכם — אבל בדרך שונה.",
+    teaseLine: "<b>פער של 0.82 הוא מילון שלם של תובנה.</b> 51% מסביר את הסיבה. המורמונים — חריג מעניין. הצעירים — אות אזהרה."
   },
   {
     q: "באיזו מידה אתה מסכים: דמיון אמונות בזוגיות חשוב מאוד",
     options: ["מסכים מאוד","מסכים","לא בטוח","לא מסכים"],
-    fact: "המחקר מצביע על כך שהאפקט הוא עקבי ולא תלוי גיל הכנסה או דת. הדמיון עצמו הוא מה שעובד."
+    teaseHeadline: "הנתונים תומכים בעקביות מפתיעה.",
+    teaseLine: "<b>בכל גיל, בכל הכנסה, בכל רמת השכלה</b> — הפער עקבי. נחזור על זה במצגת — וברור למה זה לא מקרי."
   },
   {
     q: "מה היית רוצה לחקור הלאה?",
     options: ["סיבה ותוצאה","הבדלים בין תרבויות","שינויים לאורך זמן","השפעת המגדר"],
-    fact: "כל אלה הם כיוונים שמדענים חוקרים עכשיו. המחקר הזה הוא נקודת התחלה — לא נקודת סיום."
+    teaseHeadline: "כל ארבעת הכיוונים האלה כבר בעבודה במחקר בינלאומי.",
+    teaseLine: "<b>המחקר הזה הוא נקודת התחלה — לא נקודת סיום.</b> נסכם את ההמשך בסיום המצגת."
   }
 ];
 
 let qi = -1;
+let lastChoice = null;
 const card = document.getElementById('card');
 
 function dots(active){
@@ -111,10 +126,11 @@ function dots(active){
 
 function intro(){
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(-1)}
     <div class="eyebrow fade">רפלקציה אחרי המצגת</div>
     <h1 class="fade">מה לקחת מהמחקר?</h1>
-    <p class="sub fade">6 שאלות קצרות שעוזרות לעבד את מה שראית. אין תשובות נכונות או שגויות.</p>
+    <p class="sub fade">6 שאלות קצרות לעיבוד מה שראיתם. אין תשובות נכונות או שגויות.</p>
     <button class="btn fade" onclick="next()">בואו נתחיל</button>
     <div class="credit">פרויקט NAMELESS · תחרות מדעי הנתונים 2026</div>
   `;
@@ -124,9 +140,10 @@ function question(){
   const Q = QUESTIONS[qi];
   let opts = Q.options.map((o,i)=>`
     <button class="opt" onclick="answer(${i})">
-      <span class="pill">${["א","ב","ג","ד"][i]}</span>${o}
+      <span class="pill">${["א","ב","ג","ד","ה"][i]}</span>${o}
     </button>`).join('');
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(qi)}
     <div class="eyebrow fade">שאלה ${qi+1} מתוך ${QUESTIONS.length}</div>
     <div class="q fade">${Q.q}</div>
@@ -134,33 +151,50 @@ function question(){
   `;
 }
 
-function answer(choiceIdx){
+function spinner(){
+  card.innerHTML = `
+    <div class="group-name">${GROUP}</div>
+    ${dots(qi+1)}
+    <div class="spinner-wrap fade">
+      <div class="spinner"></div>
+      <div class="spinner-text">רגע, ממתינים לשאר המשתתפים...</div>
+      <div class="spinner-sub">אוסף תשובות מכל החדר</div>
+    </div>
+  `;
+  setTimeout(tease, 2800);
+}
+
+function tease(){
   const Q = QUESTIONS[qi];
   const last = qi === QUESTIONS.length-1;
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(qi+1)}
-    <div class="eyebrow fade">תובנה</div>
-    <div class="funfact fade" style="margin-top:8px">
-      <div class="tag">לחשוב על זה</div>
-      <p>${Q.fact}</p>
-    </div>
-    <div class="you-pick fade">בחרת <b>${Q.options[choiceIdx]}</b></div>
-    <button class="btn fade" onclick="next()">${last ? 'לסיכום' : 'שאלה הבאה'}</button>
+    <div class="tease-tag fade">תובנה</div>
+    <div class="tease-headline fade">${Q.teaseHeadline}</div>
+    <div class="tease-line fade">${Q.teaseLine}</div>
+    <div class="reveal-big fade">📊 הסיכום במצגת</div>
+    <div class="you-pick fade">בחירתך: <b>${Q.options[lastChoice]}</b></div>
+    <button class="btn fade" onclick="next()">${last ? 'לסיום' : 'שאלה הבאה'}</button>
   `;
+}
+
+function answer(choiceIdx){
+  lastChoice = choiceIdx;
+  spinner();
 }
 
 function final(){
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(QUESTIONS.length)}
-    <div class="eyebrow fade">תודה</div>
-    <h1 class="fade" style="font-size:26px">המסע מסתיים — אבל השאלות נשארות</h1>
-    <p class="big-quote fade">"מחקר טוב לא נותן תשובות — הוא נותן שאלות טובות יותר."</p>
-    <div class="fade" style="margin-top:18px">
-      <div class="final-fact">זוגות שחולקים <b>אמונה דומה</b> חיים טוב יותר בשלושה ממדים — אושר בריאות ושלווה.</div>
-      <div class="final-fact">השלווה הפנימית מרוויחה הכי הרבה — פער של 0.82 נקודות בין הקצוות.</div>
-      <div class="final-fact">המסר: <b>"כשמאמינים יחד — חיים טוב יותר יחד."</b></div>
+    <div class="eyebrow fade">תודה רבה</div>
+    <h1 class="fade" style="font-size:28px">המסע מסתיים</h1>
+    <p class="sub fade" style="margin-top:14px">"מחקר טוב לא נותן תשובות — הוא נותן שאלות טובות יותר."</p>
+    <div class="tease-line fade" style="text-align:center;border-right:none;border-top:4px solid var(--gold)">
+      ✨ <b>"כשמאמינים יחד — חיים טוב יותר יחד."</b>
     </div>
-    <button class="btn ghost fade" onclick="qi=-1;next()">להתחיל מחדש</button>
+    <button class="btn ghost fade" onclick="qi=-1;next()">לסקר נוסף</button>
     <div class="credit">Pew Religious Landscape Study 2023 to 2024<br>n = 36,908 · ממוצעים משוקללים</div>
   `;
 }

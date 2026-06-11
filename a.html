@@ -8,7 +8,7 @@
   :root{
     --bg:#241812; --bg2:#2e1f15; --card:#3A2A1E; --border:#5A4636;
     --ink:#FBF1E6; --mut:#C9B49E; --acc:#D98A4E; --acc2:#E8A66A; --gold:#FCD34D;
-    --green:#7DB892; --red:#E87A6A;
+    --green:#7DB892;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
   html,body{height:100%}
@@ -17,14 +17,16 @@
     background:radial-gradient(1200px 800px at 30% -10%, #3a2415 0%, var(--bg) 60%);
     display:flex;align-items:center;justify-content:center;padding:20px;direction:rtl;
   }
-  .wrap{width:min(720px,100%)}
+  .wrap{width:min(680px,100%)}
   .card{
     background:linear-gradient(180deg,var(--card),#2a1c12);
-    border:1.5px solid var(--border);border-radius:22px;padding:32px 28px;
-    box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;overflow:hidden;
+    border:1.5px solid var(--border);border-radius:22px;padding:34px 28px;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;overflow:hidden;min-height:480px;
+    display:flex;flex-direction:column;justify-content:center;
   }
   .card::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;
     background:linear-gradient(90deg,var(--acc),var(--acc2),var(--gold))}
+  .group-name{font-size:11px;letter-spacing:3px;color:var(--mut);font-weight:700;text-align:center;margin-bottom:8px}
   .dots{display:flex;gap:8px;justify-content:center;margin-bottom:22px;direction:ltr}
   .dot{width:9px;height:9px;border-radius:50%;background:#4d3a2a;transition:.3s}
   .dot.on{background:var(--acc);transform:scale(1.3)}
@@ -32,109 +34,97 @@
   .eyebrow{font-size:12px;letter-spacing:2px;color:var(--acc);font-weight:800;text-align:center;margin-bottom:10px}
   h1{font-size:30px;font-weight:900;line-height:1.25;text-align:center;margin-bottom:10px}
   .sub{color:var(--mut);text-align:center;font-size:16px;margin-bottom:24px;line-height:1.55}
-  .q{font-size:24px;font-weight:800;line-height:1.3;text-align:center;margin:8px 0 22px}
+  .q{font-size:26px;font-weight:800;line-height:1.3;text-align:center;margin:12px 0 26px}
   .opts{display:flex;flex-direction:column;gap:11px}
   .opt{
     background:#2a1c12;border:1.5px solid var(--border);border-radius:14px;
-    padding:16px 18px;font-size:16px;color:var(--ink);text-align:right;cursor:pointer;
-    transition:.18s;display:flex;align-items:center;gap:12px;font-weight:600;
-    font-family:inherit;
+    padding:17px 18px;font-size:16.5px;color:var(--ink);text-align:right;cursor:pointer;
+    transition:.18s;display:flex;align-items:center;gap:12px;font-weight:600;font-family:inherit;
   }
   .opt:hover{border-color:var(--acc);transform:translateY(-2px);background:#3a2818}
-  .opt .pill{width:28px;height:28px;border-radius:50%;border:2px solid var(--mut);flex:0 0 auto;
-    display:grid;place-items:center;font-size:13px;color:var(--mut);font-weight:800}
-  .btn{
-    margin-top:22px;background:var(--acc);color:#1a0e07;border:none;border-radius:14px;
-    padding:15px 30px;font-size:17px;font-weight:800;cursor:pointer;transition:.18s;width:100%;
-    font-family:inherit;
-  }
+  .opt .pill{width:30px;height:30px;border-radius:50%;border:2px solid var(--mut);flex:0 0 auto;
+    display:grid;place-items:center;font-size:14px;color:var(--mut);font-weight:800}
+  .btn{margin-top:26px;background:var(--acc);color:#1a0e07;border:none;border-radius:14px;
+    padding:16px 30px;font-size:17px;font-weight:800;cursor:pointer;transition:.18s;width:100%;font-family:inherit;}
   .btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
   .btn.ghost{background:transparent;color:var(--acc);border:1.5px solid var(--acc)}
-  .res-row{display:flex;align-items:center;gap:12px;margin:10px 0;direction:rtl}
-  .res-label{width:140px;font-size:13.5px;color:var(--ink);flex:0 0 auto;font-weight:700;text-align:right}
-  .bar-track{flex:1;background:#1a0f08;border-radius:9px;height:32px;overflow:hidden;border:1px solid var(--border);direction:ltr}
-  .bar-fill{height:100%;width:0;border-radius:9px 0 0 9px;transition:width 1.1s cubic-bezier(.2,.8,.2,1);
-    display:flex;align-items:center;justify-content:flex-end;padding-left:10px;font-size:13.5px;
-    font-weight:800;color:#1a0e07;direction:ltr}
-  .funfact{
-    margin-top:22px;background:linear-gradient(180deg,#3a2818,#2a1c12);
-    border:1.5px solid var(--gold);border-radius:16px;padding:18px 20px;
+  /* spinner */
+  .spinner-wrap{text-align:center;padding:30px 0}
+  .spinner{
+    width:90px;height:90px;margin:0 auto 26px;border-radius:50%;
+    border:6px solid var(--border);border-top-color:var(--acc);
+    animation:spin 1s linear infinite;
   }
-  .funfact .tag{font-size:12px;letter-spacing:2px;color:var(--gold);font-weight:800;margin-bottom:8px}
-  .funfact p{font-size:16px;line-height:1.6}
-  .you-pick{margin-top:14px;font-size:13.5px;color:var(--mut);text-align:center}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .spinner-text{font-size:21px;font-weight:800;color:var(--ink)}
+  .spinner-sub{font-size:14px;color:var(--mut);margin-top:8px}
+  /* tease */
+  .tease{padding:8px 0}
+  .tease-tag{font-size:12px;letter-spacing:2px;color:var(--acc);font-weight:800;text-align:center;margin-bottom:14px}
+  .tease-headline{font-size:23px;font-weight:900;line-height:1.35;text-align:center;margin-bottom:18px;color:var(--ink)}
+  .tease-line{background:#3a2818;border:1px solid var(--border);border-right:4px solid var(--gold);
+    border-radius:12px;padding:16px 18px;font-size:15.5px;line-height:1.55;text-align:right;margin:10px 0}
+  .tease-line b{color:var(--acc)}
+  .you-pick{font-size:13.5px;color:var(--mut);text-align:center;margin-top:14px}
   .you-pick b{color:var(--acc)}
   .fade{animation:fade .5s ease both}
   @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .final-fact{background:#2a1c12;border:1px solid var(--border);border-right:4px solid var(--gold);
-    border-radius:12px;padding:14px 18px;margin:10px 0;font-size:15.5px;line-height:1.5}
-  .final-fact b{color:var(--acc)}
   .credit{text-align:center;color:var(--mut);font-size:12px;margin-top:18px;line-height:1.6}
+  .reveal-big{font-size:20px;font-weight:900;color:var(--gold);text-align:center;padding:14px 0}
 </style>
 </head>
 <body>
 <div class="wrap"><div class="card" id="card"></div></div>
 <script>
-const BAR = ["#D98A4E","#E8A66A","#C9B49E","#7DB892","#E87A6A"];
+const GROUP = "פרויקט NAMELESS  ·  אחרייטק 2026";
 
 const QUESTIONS = [
   {
     q: "מה לדעתכם מנבא הכי הרבה את האושר בזוגיות?",
     options: ["אהבה","כסף","אמונה משותפת","בריאות"],
-    chartTitle: "מה המחקר מצא בפועל",
-    bars: [["אהבה (לא נמדד)","—"],["כסף (פער הכנסה)",0.20],["אמונה משותפת",0.82],["בריאות (לא נמדד)","—"]],
-    unit:"score",
-    correct: 2,
-    fact: "אמונה משותפת! פער של 0.82 נקודות בשלווה הפנימית בין זוגות דומים מאוד דתית לבין שונים מאוד. זה הפער הגדול ביותר במחקר."
+    popular: "אמונה משותפת",
+    teaseHeadline: "רוב האנשים מהמרים על אהבה. החוקרים מצאו שם אחר.",
+    teaseLine: "גם במחקר Pew של <b>36,908 אמריקאים</b> — אמונה משותפת מובילה בפער מפתיע. <b>הפער המלא יוצג במצגת.</b>"
   },
   {
     q: "האם כסף קונה שלווה פנימית?",
     options: ["כן — יותר כסף = יותר שלווה","לא — שלווה לא תלויה בכסף","לא בטוח/ה"],
-    chartTitle: "שלווה פנימית לפי הכנסה",
-    bars: [["הכנסה נמוכה",3.64],["הכנסה בינונית",3.67],["הכנסה גבוהה",3.57]],
-    unit:"score",
-    correct: 1,
-    fact: "כסף לא קונה שלווה. השלווה הפנימית נשארת קבועה בערך 3.6 בכל רמת הכנסה. כסף כן מעלה אושר ובריאות אבל לא שלווה."
+    popular: "לא",
+    teaseHeadline: "רוב האנשים אומרים 'לא'. הם צודקים — אבל באופן שיפתיע.",
+    teaseLine: "במחקר Pew: כסף מעלה אושר ובריאות אבל לא מזיז את השלווה הפנימית כלל. <b>הנתון המדויק במצגת.</b>"
   },
   {
     q: "איזו דת לדעתכם מדווחת על הכי הרבה שלווה פנימית?",
     options: ["יהדות","אסלאם","נצרות","מורמונים","חסרי דת"],
-    chartTitle: "שלווה פנימית לפי דת",
-    bars: [["יהדות",3.23],["אסלאם",4.37],["נצרות (קתולים)",3.69],["מורמונים",4.48],["חסרי דת",2.95]],
-    unit:"score",
-    correct: 3,
-    fact: "המורמונים מובילים עם 4.48 נקודות שלווה. אחריהם המוסלמים (4.37). הכי נמוך — חסרי הדת (2.95). פער של 1.5 נקודות מהקצה לקצה."
+    popular: "מורמונים",
+    teaseHeadline: "התשובה תפתיע — שתי קבוצות מובילות בפער ניכר.",
+    teaseLine: "במחקר Pew: שתי קבוצות לא צפויות לוקחות את הראש, ואחת מובילה בתחתית. <b>הדירוג המלא במצגת.</b>"
   },
   {
     q: "מי לדעתכם מאושר יותר היום — דור צעיר או מבוגר?",
     options: ["דור צעיר (Gen Z, מילניאלס)","דור מבוגר (בייבי בומרס, השקט)"],
-    chartTitle: "אושר ושלווה לפי דור",
-    bars: [["דור השקט — אושר",2.20],["דור Z — אושר",2.10],["דור השקט — שלווה",3.80],["דור Z — שלווה",3.53]],
-    unit:"score",
-    correct: 1,
-    fact: "מפתיע — המבוגרים מאושרים יותר ושלווים יותר. הצעירים דווקא מרוצים יותר מהחיים שלהם. כל דור מצא מסלול אחר לרווחה."
+    popular: "מבוגר",
+    teaseHeadline: "התשובה לא חד-משמעית. כל דור מצא מסלול אחר.",
+    teaseLine: "במחקר Pew: דור אחד מוביל באושר ובשלווה, אבל דור אחר מוביל בשביעות רצון. <b>ההפרדה במצגת.</b>"
   },
   {
     q: "כששני בני הזוג דתיים מאוד, השלווה הפנימית שלהם...",
     options: ["גבוהה הרבה יותר","בערך אותו דבר","נמוכה יותר"],
-    chartTitle: "שלווה פנימית לפי דתיות הזוג",
-    bars: [["שניהם דתיים",4.53],["מעורב",3.49],["שניהם חילונים",2.81]],
-    unit:"score",
-    correct: 0,
-    fact: "גבוהה משמעותית! זוגות ששניהם דתיים מאוד מגיעים ל-4.53 שלווה. זוגות ששניהם חילונים — רק 2.81. פער ענק של 1.72 נקודות."
+    popular: "גבוהה הרבה יותר",
+    teaseHeadline: "רוב מנחשים נכון. אבל לא מעריכים כמה גדול הפער באמת.",
+    teaseLine: "במחקר Pew: הפער בין 'שניהם דתיים' ל'שניהם חילוניים' הוא <b>הפער הגדול במחקר כולו.</b> הנתון במצגת."
   },
   {
     q: "איזה ממצא ירשים אתכם הכי הרבה?",
-    options: ["שדמיון דתי מנבא רווחה","שכסף לא משפיע על שלווה","שהאפקט עקבי בכל הדורות","שהאפקט עקבי בכל הרמות הכלכליות"],
-    chartTitle: "הממצאים המרכזיים של המחקר",
-    bars: [["פער דמיון דתי",0.82],["פער הכנסה (שלווה)",0.03],["פער דור צעיר/מבוגר",0.27],["פער דמיון בעוני",0.85]],
-    unit:"score",
-    correct: -1,
-    fact: "כל הממצאים מדהימים בדרכם — אבל המסר הגדול אחד: כשבני הזוג מאמינים יחד, הם חיים טוב יותר יחד. בכל גיל, בכל הכנסה, בכל דת."
+    options: ["שדמיון דתי כל כך משפיע","שכסף לא קונה שלווה","שני המאמינים בראש הרווחה","ההבדלים בין דורות"],
+    popular: "דמיון דתי",
+    teaseHeadline: "כל ארבעת הממצאים מובילים לאותו סיפור.",
+    teaseLine: "במחקר Pew: <b>אחד מהממצאים האלה גדול ב-4 מהשני.</b> נחשוף אותו במצגת ונראה למה זה משנה."
   }
 ];
 
 let qi = -1;
+let lastChoice = null;
 const card = document.getElementById('card');
 
 function dots(active){
@@ -148,10 +138,11 @@ function dots(active){
 
 function intro(){
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(-1)}
     <div class="eyebrow fade">PEW RESEARCH · 36,908 נשאלים</div>
     <h1 class="fade">חזו את הממצאים</h1>
-    <p class="sub fade">6 שאלות. בכל אחת תנסו לנחש מה החוקרים גילו — ואז תראו את התשובה האמיתית.</p>
+    <p class="sub fade">6 שאלות. בכל אחת תנחשו מה החוקרים מצאו. התוצאות המלאות יוצגו במצגת בהמשך.</p>
     <button class="btn fade" onclick="next()">בואו נתחיל</button>
     <div class="credit">פרויקט NAMELESS · תחרות מדעי הנתונים 2026</div>
   `;
@@ -164,6 +155,7 @@ function question(){
       <span class="pill">${["א","ב","ג","ד","ה"][i]}</span>${o}
     </button>`).join('');
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(qi)}
     <div class="eyebrow fade">שאלה ${qi+1} מתוך ${QUESTIONS.length}</div>
     <div class="q fade">${Q.q}</div>
@@ -171,58 +163,50 @@ function question(){
   `;
 }
 
-function answer(choiceIdx){
+function spinner(){
+  card.innerHTML = `
+    <div class="group-name">${GROUP}</div>
+    ${dots(qi+1)}
+    <div class="spinner-wrap fade">
+      <div class="spinner"></div>
+      <div class="spinner-text">רגע, ממתינים לשאר המשתתפים...</div>
+      <div class="spinner-sub">אוסף תשובות מכל החדר</div>
+    </div>
+  `;
+  setTimeout(tease, 2800);
+}
+
+function tease(){
   const Q = QUESTIONS[qi];
-  const numericBars = Q.bars.filter(b => typeof b[1] === 'number');
-  const max = Math.max(...numericBars.map(b => b[1]));
-  let rows = Q.bars.map((b,i)=>{
-    const isNum = typeof b[1] === 'number';
-    const w = isNum ? Math.round(100*b[1]/max) : 0;
-    const val = isNum ? b[1].toFixed(2) : b[1];
-    const color = (Q.correct === i) ? 'var(--gold)' : BAR[i % BAR.length];
-    return `<div class="res-row">
-      <div class="res-label">${b[0]}</div>
-      <div class="bar-track"><div class="bar-fill" data-w="${w}" style="background:${color}">${val}</div></div>
-    </div>`;
-  }).join('');
-  const youPickedRight = (Q.correct === choiceIdx);
-  const youLine = Q.correct >= 0
-    ? `<div class="you-pick fade">בחרת <b>${Q.options[choiceIdx]}</b>. ${youPickedRight ? 'צדקת! ✨' : 'התשובה הנכונה: ' + Q.options[Q.correct]}</div>`
-    : `<div class="you-pick fade">בחרת <b>${Q.options[choiceIdx]}</b>.</div>`;
   const last = qi === QUESTIONS.length-1;
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(qi+1)}
-    <div class="eyebrow fade">${Q.chartTitle}</div>
-    <div class="fade" style="margin-top:8px">${rows}</div>
-    <div class="funfact fade">
-      <div class="tag">העובדה האמיתית</div>
-      <p>${Q.fact}</p>
-    </div>
-    ${youLine}
-    <button class="btn fade" onclick="next()">${last ? 'לסיכום' : 'שאלה הבאה'}</button>
+    <div class="tease-tag fade">תוצאה ראשונית</div>
+    <div class="tease-headline fade">${Q.teaseHeadline}</div>
+    <div class="tease-line fade">${Q.teaseLine}</div>
+    <div class="reveal-big fade">📊 התשובה המלאה במצגת</div>
+    <div class="you-pick fade">בחירתך: <b>${Q.options[lastChoice]}</b></div>
+    <button class="btn fade" onclick="next()">${last ? 'לסיום' : 'שאלה הבאה'}</button>
   `;
-  requestAnimationFrame(()=>setTimeout(()=>{
-    document.querySelectorAll('.bar-fill').forEach(el=>{
-      el.style.width = el.dataset.w + '%';
-    });
-  },150));
+}
+
+function answer(choiceIdx){
+  lastChoice = choiceIdx;
+  spinner();
 }
 
 function final(){
   card.innerHTML = `
+    <div class="group-name fade">${GROUP}</div>
     ${dots(QUESTIONS.length)}
-    <div class="eyebrow fade">סיכום הממצאים</div>
-    <h1 class="fade" style="font-size:26px">שלושה דברים לזכור</h1>
-    <div class="fade" style="margin-top:18px">
-      <div class="final-fact">זוגות שחולקים <b>אמונה דומה</b> מדווחים על אושר, בריאות ושלווה גבוהים יותר.</div>
-      <div class="final-fact"><b>השלווה הפנימית</b> מרוויחה הכי הרבה מאמונה משותפת — פער של 0.82 נקודות.</div>
-      <div class="final-fact"><b>כסף</b> מעלה אושר ובריאות אבל לא משפיע על השלווה הפנימית.</div>
+    <div class="eyebrow fade">תודה רבה</div>
+    <h1 class="fade" style="font-size:28px">התשובות שלכם נרשמו</h1>
+    <p class="sub fade" style="margin-top:14px">עכשיו תקשיבו למצגת — נחשוף את הממצאים האמיתיים מתוך 36,908 נסקרים, ונראה את ההפתעות הגדולות של המחקר.</p>
+    <div class="tease-line fade" style="text-align:center;border-right:none;border-top:4px solid var(--gold)">
+      ✨ <b>טיפ:</b> כל ממצא שתראו במצגת כבר השאיר את הסקרים האחרים בהלם.
     </div>
-    <div class="funfact fade" style="border-color:var(--green)">
-      <div class="tag" style="color:var(--green)">המחשבה הסוגרת</div>
-      <p>"כשמאמינים יחד — חיים טוב יותר יחד."</p>
-    </div>
-    <button class="btn ghost fade" onclick="qi=-1;next()">להתחיל מחדש</button>
+    <button class="btn ghost fade" onclick="qi=-1;next()">לסקר נוסף</button>
     <div class="credit">Pew Religious Landscape Study 2023 to 2024<br>n = 36,908 · ממוצעים משוקללים</div>
   `;
 }
